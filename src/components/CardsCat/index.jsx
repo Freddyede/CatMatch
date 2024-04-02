@@ -9,21 +9,20 @@ const CardsCat = () => {
     useEffect(() => {
         useShuffle(setCats, 0, 1);
     }, []);
-    const handleChange = () => {
-        let count = 0;
-        let k = count !== 0 ? count + 1 : 1;
-        let l = count !== 0 ? count + 2 : 2;
-        if(count === 4)
-            count = 0;
-        useShuffle(setCats, k, l);
-        count += 1;
-    };
+
+    const handleCount = (id, count) => {
+        let cat = cats.find(cat => cat.id === id);
+        cat.point = count;
+        const newCats = cats.filter(cat => cat.id !== id);
+        newCats.push(cat);
+        setCats(newCats);
+        setTimeout(useShuffle(setCats), 2000)
+    }
     return (
         <div className="cards-container">
             {
-                cats.map(cat => (<CardComponent key={ cat.id } {...cat} />))
+                cats.map(cat => (<CardComponent handleCount={ (id, count) => handleCount(id, count) } key={ cat.id } name={cat.name} link={cat.link} point={cat.point} id={ cat.id } />))
             }
-            <button onClick={handleChange}>Change card</button>
         </div>
     );
 }

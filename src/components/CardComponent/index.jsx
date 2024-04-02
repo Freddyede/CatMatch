@@ -1,18 +1,25 @@
 import '../../assets/card.css';
+import {useState} from "react";
+import {useShuffle} from "../../hooks/index.jsx";
 
-const CardComponent = ({ name, link, point }) => {
+const CardComponent = ({ name, link, id, point, handleCount }) => {
+    const [count, setCount] = useState(point);
+    const handleChange = () => {
+        setCount(count + 1);
+        handleCount(id, count);
+    };
     return (
-        <div className='card'>
+        <div className='card' onClick={handleChange}>
             <div className="card-body">
                 <div>
-                    <img src={link} alt={name} />
+                    <img src={link} alt={name}/>
                 </div>
                 <div>
-                    <p>{ name }</p>
+                    <p>{name}</p>
                 </div>
             </div>
             <div className="card-footer">
-                <span>{ point }</span>
+                <span>{count}</span>
             </div>
         </div>
     );
