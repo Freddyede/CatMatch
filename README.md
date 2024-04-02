@@ -1,4 +1,4 @@
-# TP : CatMatch
+# <center><u><i>TP - CatMatch :</i></u></center>
 
 ## <u>Objectif :</u>
 Développer une application ReactJS interactive et ludique nommée CatMatch.
