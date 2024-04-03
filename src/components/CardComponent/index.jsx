@@ -1,8 +1,7 @@
 import '../../assets/card.css';
 import {useState} from "react";
-import {useShuffle} from "../../hooks/index.jsx";
 
-const CardComponent = ({ name, link, id, point, handleCount }) => {
+function CardComponent ({ name, link, id, point, handleCount }) {
     const [count, setCount] = useState(point);
     const handleChange = () => {
         setCount(count + 1);

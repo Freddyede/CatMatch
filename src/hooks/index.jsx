@@ -1,1 +1,1 @@
-export { default as useShuffle } from './useShuffle';
+export { default as useScore } from './useScore';

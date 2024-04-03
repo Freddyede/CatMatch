@@ -1,28 +1,26 @@
-import {useEffect, useState} from "react";
 import '../../assets/cardContainer.css';
 import { CardComponent } from "../";
-import { useShuffle } from "../../hooks";
+import HeaderLayout from "../../HeaderLayout";
 
-const CardsCat = () => {
-    const [cats, setCats] = useState([]);
-
-    useEffect(() => {
-        useShuffle(setCats, 0, 1);
-    }, []);
-
-    const handleCount = (id, count) => {
-        let cat = cats.find(cat => cat.id === id);
-        cat.point = count;
-        const newCats = cats.filter(cat => cat.id !== id);
-        newCats.push(cat);
-        setCats(newCats);
-        setTimeout(useShuffle(setCats), 2000)
-    }
+function CardsCat ({cats, handleCount}) {
     return (
-        <div className="cards-container">
-            {
-                cats.map(cat => (<CardComponent handleCount={ (id, count) => handleCount(id, count) } key={ cat.id } name={cat.name} link={cat.link} point={cat.point} id={ cat.id } />))
-            }
+        <div className="containerFlex">
+            <HeaderLayout />
+            <div className="cards-container">
+                {
+                    cats.map(cat => (
+                            <CardComponent
+                                handleCount={ id => handleCount(id) }
+                                key={ cat.id }
+                                name={ cat.name }
+                                link={ cat.link }
+                                point={ cat.point }
+                                id={ cat.id }
+                            />
+                        )
+                    )
+                }
+            </div>
         </div>
     );
 }
